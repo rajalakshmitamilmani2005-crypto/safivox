@@ -1,0 +1,142 @@
+<PrivacyScreen>:
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "15dp"
+        spacing: "10dp"
+
+
+        MDTopAppBar:
+            title: "Privacy Policy"
+            elevation: 10
+
+            left_action_items:
+                [["arrow-left", lambda x: root.go_back()]]
+
+
+
+        ScrollView:
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: "15dp"
+                padding: "10dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "20dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "220dp"
+                    elevation: 5
+
+
+                    MDLabel:
+                        text: "Safivox Privacy Policy"
+                        font_style: "H5"
+                        halign: "center"
+                        size_hint_y: None
+                        height: "40dp"
+
+
+                    MDLabel:
+                        text: "Safivox is committed to protecting user privacy while providing emergency safety services."
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "300dp"
+                    elevation: 5
+
+
+                    MDLabel:
+                        text: "Information Collection"
+                        font_style: "H6"
+
+
+                    MDLabel:
+                        text: "• User profile information\n• Emergency contacts\n• Location information during SOS\n• Photo, video and audio evidence"
+
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "280dp"
+                    elevation: 5
+
+
+                    MDLabel:
+                        text: "Information Usage"
+                        font_style: "H6"
+
+
+                    MDLabel:
+                        text: "The collected information is used for:\n\n• Sending emergency alerts\n• Sharing location with trusted contacts\n• Providing safety assistance\n• Improving application performance"
+
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "250dp"
+                    elevation: 5
+
+
+                    MDLabel:
+                        text: "Data Security"
+                        font_style: "H6"
+
+
+                    MDLabel:
+                        text: "Safivox does not share personal information with unauthorized users. User data is handled securely."
+
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "180dp"
+                    elevation: 5
+
+
+                    MDLabel:
+                        text: "Application Details"
+                        font_style: "H6"
+
+
+                    MDLabel:
+                        text: "Application Name : Safivox\nVersion : 1.0\nDeveloped Using : Python + KivyMD"
+
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]

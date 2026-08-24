@@ -1,0 +1,514 @@
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+
+<LocationScreen>:
+
+    MDFloatLayout:
+
+        # ==========================================================
+        # BACKGROUND
+        # ==========================================================
+
+        canvas.before:
+
+            Color:
+                rgba: 0.96, 0.97, 1, 1
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+        # ==========================================================
+        # HEADER
+        # ==========================================================
+
+        MDCard:
+
+            size_hint:
+                1, None
+
+            height:
+                dp(72)
+
+            pos_hint:
+                {"top": 1}
+
+            radius:
+                [0, 0, 20, 20]
+
+            elevation:
+                5
+
+            md_bg_color:
+                1, 1, 1, 1
+
+
+            MDBoxLayout:
+
+                orientation:
+                    "horizontal"
+
+                padding:
+                    dp(6), 0
+
+                spacing:
+                    dp(5)
+
+
+                # ==================================================
+                # HOME / BACK ARROW
+                # ==================================================
+
+                MDIconButton:
+
+                    icon:
+                        "arrow-left"
+
+                    icon_size:
+                        "28sp"
+
+                    theme_icon_color:
+                        "Custom"
+
+                    icon_color:
+                        0.22, 0.18, 0.55, 1
+
+                    size_hint:
+                        None, None
+
+                    size:
+                        dp(48), dp(48)
+
+                    pos_hint:
+                        {"center_y": 0.5}
+
+                    # ALWAYS GO TO HOME
+                    on_release:
+                        root.go_back()
+
+
+                # ==================================================
+                # TITLE
+                # ==================================================
+
+                MDLabel:
+
+                    text:
+                        "My Location"
+
+                    font_size:
+                        sp(20)
+
+                    bold:
+                        True
+
+                    theme_text_color:
+                        "Custom"
+
+                    text_color:
+                        0.22, 0.18, 0.55, 1
+
+                    valign:
+                        "middle"
+
+                    pos_hint:
+                        {"center_y": 0.5}
+
+
+        # ==========================================================
+        # MAIN CONTENT
+        # ==========================================================
+
+        MDBoxLayout:
+
+            orientation:
+                "vertical"
+
+            spacing:
+                dp(12)
+
+            padding:
+                dp(14), dp(86), dp(14), dp(80)
+
+
+            # ======================================================
+            # LOCATION STATUS
+            # ======================================================
+
+            MDCard:
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(95)
+
+                radius:
+                    [20]
+
+                elevation:
+                    3
+
+                md_bg_color:
+                    1, 1, 1, 1
+
+                padding:
+                    dp(14)
+
+
+                MDBoxLayout:
+
+                    orientation:
+                        "horizontal"
+
+                    spacing:
+                        dp(12)
+
+
+                    MDIcon:
+
+                        icon:
+                            "crosshairs-gps"
+
+                        font_size:
+                            "40sp"
+
+                        theme_text_color:
+                            "Custom"
+
+                        text_color:
+                            0.35, 0.25, 0.90, 1
+
+                        size_hint_x:
+                            None
+
+                        width:
+                            dp(50)
+
+                        pos_hint:
+                            {"center_y": 0.5}
+
+
+                    MDBoxLayout:
+
+                        orientation:
+                            "vertical"
+
+                        spacing:
+                            dp(2)
+
+                        pos_hint:
+                            {"center_y": 0.5}
+
+
+                        MDLabel:
+
+                            text:
+                                "Current Location"
+
+                            font_size:
+                                sp(17)
+
+                            bold:
+                                True
+
+                            theme_text_color:
+                                "Custom"
+
+                            text_color:
+                                0.12, 0.12, 0.18, 1
+
+                            size_hint_y:
+                                None
+
+                            height:
+                                dp(28)
+
+
+                        MDLabel:
+
+                            id: location_status
+
+                            text:
+                                "Getting real location..."
+
+                            font_size:
+                                sp(12)
+
+                            theme_text_color:
+                                "Secondary"
+
+                            size_hint_y:
+                                None
+
+                            height:
+                                dp(25)
+
+
+            # ======================================================
+            # COORDINATES
+            # ======================================================
+
+            MDCard:
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(135)
+
+                radius:
+                    [20]
+
+                elevation:
+                    3
+
+                md_bg_color:
+                    1, 1, 1, 1
+
+                padding:
+                    dp(18)
+
+
+                MDBoxLayout:
+
+                    orientation:
+                        "vertical"
+
+                    spacing:
+                        dp(6)
+
+
+                    MDLabel:
+
+                        text:
+                            "GPS Coordinates"
+
+                        font_size:
+                            sp(17)
+
+                        bold:
+                            True
+
+                        theme_text_color:
+                            "Custom"
+
+                        text_color:
+                            0.14, 0.14, 0.20, 1
+
+                        size_hint_y:
+                            None
+
+                        height:
+                            dp(28)
+
+
+                    MDLabel:
+
+                        id: latitude
+
+                        text:
+                            "Latitude: Waiting..."
+
+                        font_size:
+                            sp(14)
+
+                        theme_text_color:
+                            "Custom"
+
+                        text_color:
+                            0.22, 0.18, 0.55, 1
+
+                        size_hint_y:
+                            None
+
+                        height:
+                            dp(26)
+
+
+                    MDLabel:
+
+                        id: longitude
+
+                        text:
+                            "Longitude: Waiting..."
+
+                        font_size:
+                            sp(14)
+
+                        theme_text_color:
+                            "Custom"
+
+                        text_color:
+                            0.22, 0.18, 0.55, 1
+
+                        size_hint_y:
+                            None
+
+                        height:
+                            dp(26)
+
+
+            # ======================================================
+            # REFRESH LOCATION
+            # ======================================================
+
+            MDRaisedButton:
+
+                text:
+                    "GET CURRENT LOCATION"
+
+                size_hint_x:
+                    1
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(50)
+
+                md_bg_color:
+                    0.35, 0.25, 0.90, 1
+
+                text_color:
+                    1, 1, 1, 1
+
+                on_release:
+                    root.refresh_location()
+
+
+            # ======================================================
+            # OPEN MAP
+            # ======================================================
+
+            MDRaisedButton:
+
+                text:
+                    "OPEN CURRENT LOCATION"
+
+                size_hint_x:
+                    1
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(50)
+
+                md_bg_color:
+                    0.08, 0.55, 0.35, 1
+
+                text_color:
+                    1, 1, 1, 1
+
+                on_release:
+                    root.open_map()
+
+
+            # ======================================================
+            # POLICE + HOSPITAL
+            # ======================================================
+
+            MDBoxLayout:
+
+                orientation:
+                    "horizontal"
+
+                spacing:
+                    dp(10)
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(50)
+
+
+                MDRaisedButton:
+
+                    text:
+                        "POLICE"
+
+                    size_hint_x:
+                        0.5
+
+                    height:
+                        dp(50)
+
+                    md_bg_color:
+                        0.15, 0.30, 0.70, 1
+
+                    text_color:
+                        1, 1, 1, 1
+
+                    on_release:
+                        root.nearby_police()
+
+
+                MDRaisedButton:
+
+                    text:
+                        "HOSPITAL"
+
+                    size_hint_x:
+                        0.5
+
+                    height:
+                        dp(50)
+
+                    md_bg_color:
+                        0.75, 0.20, 0.25, 1
+
+                    text_color:
+                        1, 1, 1, 1
+
+                    on_release:
+                        root.nearby_hospital()
+
+
+            # ======================================================
+            # SAFE ROUTE
+            # ======================================================
+
+            MDRaisedButton:
+
+                text:
+                    "SAFE ROUTE"
+
+                size_hint_x:
+                    1
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(50)
+
+                md_bg_color:
+                    0.90, 0.55, 0.10, 1
+
+                text_color:
+                    1, 1, 1, 1
+
+                on_release:
+                    root.go_home()
+
+
+        # ==========================================================
+        # COMMON FOOTER
+        # ==========================================================
+
+        SafivoxFooter:
+
+            id: location_footer
+
+            size_hint:
+                1, None
+
+            height:
+                dp(68)
+
+            pos_hint:
+                {"x": 0, "y": 0}

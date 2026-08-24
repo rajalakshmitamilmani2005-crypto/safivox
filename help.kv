@@ -1,0 +1,153 @@
+<HelpScreen>:
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "10dp"
+
+        MDTopAppBar:
+            title: "Help"
+            elevation: 10
+
+            left_action_items:
+                [["arrow-left", lambda x: root.go_back()]]
+
+        ScrollView:
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: "15dp"
+                padding: "15dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "20dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "180dp"
+                    elevation: 5
+
+                    MDLabel:
+                        text: "Welcome to Safivox"
+                        halign: "center"
+                        font_style: "H5"
+
+                    MDLabel:
+                        text: "Safivox is a women's safety application that provides emergency assistance through SOS alerts, location sharing, evidence collection, and emergency contacts."
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "230dp"
+                    elevation: 5
+
+                    MDLabel:
+                        text: "How to Use SOS"
+                        font_style: "H6"
+
+                    MDLabel:
+                        text: "• Press the SOS button during an emergency.\n\n• The app sends an emergency alert.\n\n• Your emergency contacts can be notified.\n\n• Your current location can be shared."
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "250dp"
+                    elevation: 5
+
+                    MDLabel:
+                        text: "Emergency Contacts"
+                        font_style: "H6"
+
+                    MDLabel:
+                        text: "• Add trusted family members or friends.\n\n• Update contact numbers whenever necessary.\n\n• These contacts receive emergency alerts."
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+                MDCard:
+                    orientation: "vertical"
+                    padding: "20dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "260dp"
+                    elevation: 5
+
+                    MDLabel:
+                        text: "Singappen Padai Support"
+                        font_style: "H6"
+
+                    MDLabel:
+                        text:" Organization : Singappen Padai\n\nDistrict : Erode\n\nContact Number : [Official Number]\n\nPurpose : Women's Safety Support\n\nIf you need immediate assistance, contact the official Singappen Padai helpline or use the SOS feature in Safivox."
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "260dp"
+                    elevation: 5
+
+                    MDLabel:
+                        text: "Location & Evidence"
+                        font_style: "H6"
+
+                    MDLabel:
+                        text: "• Enable Location permission.\n\n• Share your live location during emergencies.\n\n• Capture photos, videos, and audio as evidence if needed."
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "250dp"
+                    elevation: 5
+
+                    MDLabel:
+                        text: "Safety Tips"
+                        font_style: "H6"
+
+                    MDLabel:
+                        text: "• Keep your emergency contacts updated.\n\n• Allow Location, Camera, and Microphone permissions.\n\n• Keep your phone charged.\n\n• Test the app regularly."
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "170dp"
+                    elevation: 5
+
+                    MDLabel:
+                        text: "Need More Help?"
+                        font_style: "H6"
+
+                    MDLabel:
+                        text: "If you experience any issues while using Safivox, check that all required permissions are enabled and your emergency contacts have been added correctly."
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]

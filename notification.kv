@@ -1,0 +1,27 @@
+#:import dp kivy.metrics.dp
+
+<NotificationScreen>:
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Notification History"
+            elevation: 10
+
+            left_action_items:
+                [["arrow-left", lambda x: root.go_back()]]
+
+            right_action_items:
+                [["delete", lambda x: root.clear_all()]]
+
+        ScrollView:
+            do_scroll_x: False
+
+            MDBoxLayout:
+                id: notification_list
+                orientation: "vertical"
+                padding: dp(10)
+                spacing: dp(10)
+                size_hint_y: None
+                height: self.minimum_height

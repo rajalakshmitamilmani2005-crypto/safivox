@@ -1,0 +1,25 @@
+#:import dp kivy.metrics.dp
+
+<HistoryScreen>:
+
+    name: "history"
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "SOS History"
+            elevation: 4
+
+            left_action_items:
+                [["arrow-left", lambda x: root.go_back()]]
+
+            right_action_items:
+                [["delete", lambda x: root.clear_history()]]
+
+        ScrollView:
+
+            MDList:
+                id: history_list
+                padding: dp(10)
+                spacing: dp(5)

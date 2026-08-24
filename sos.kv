@@ -1,0 +1,332 @@
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+<SOSScreen>:
+
+    MDBoxLayout:
+        orientation: "vertical"
+        md_bg_color: 0.96, 0.97, 0.99, 1
+
+        # ======================================================
+        # TOP APP BAR
+        # ======================================================
+
+        MDTopAppBar:
+            title: "Emergency SOS"
+            left_action_items:
+                [["arrow-left", lambda x: root.go_back()]]
+
+        # ======================================================
+        # MAIN CONTENT
+        # ======================================================
+
+        ScrollView:
+
+            MDBoxLayout:
+                orientation: "vertical"
+
+                padding:
+                    dp(20), dp(20), dp(20), dp(25)
+
+                spacing: dp(15)
+
+                size_hint_y: None
+                height: self.minimum_height
+
+                # ==================================================
+                # SOS HEADER CARD
+                # ==================================================
+
+                MDCard:
+                    orientation: "vertical"
+
+                    size_hint_y: None
+                    height: dp(170)
+
+                    padding: dp(20)
+                    spacing: dp(10)
+
+                    radius:
+                        [dp(20), dp(20), dp(20), dp(20)]
+
+                    elevation: 4
+
+                    MDLabel:
+                        text: "EMERGENCY SOS"
+                        halign: "center"
+
+                        font_style: "H5"
+                        bold: True
+
+                        size_hint_y: None
+                        height: dp(35)
+
+                    MDLabel:
+                        text: "Safivox Emergency Assistance"
+                        halign: "center"
+
+                        theme_text_color: "Secondary"
+
+                        size_hint_y: None
+                        height: dp(30)
+
+                    MDLabel:
+                        text: root.status_text
+                        halign: "center"
+
+                        bold: True
+
+                        theme_text_color: "Custom"
+                        text_color: 0.85, 0.10, 0.10, 1
+
+                        size_hint_y: None
+                        height: dp(40)
+
+                # ==================================================
+                # SOS START BUTTON
+                # ==================================================
+
+                MDRaisedButton:
+                    text: "START SOS"
+
+                    size_hint_x: 0.9
+                    size_hint_y: None
+                    height: dp(55)
+
+                    pos_hint:
+                        {"center_x": 0.5}
+
+                    on_release:
+                        root.start_sos()
+
+                # ==================================================
+                # CANCEL BUTTON
+                # ==================================================
+
+                MDFlatButton:
+                    text: "CANCEL SOS"
+
+                    size_hint_x: 0.9
+                    size_hint_y: None
+                    height: dp(50)
+
+                    pos_hint:
+                        {"center_x": 0.5}
+
+                    on_release:
+                        root.cancel_sos()
+
+                # ==================================================
+                # SIREN CARD
+                # ==================================================
+
+                MDCard:
+                    orientation: "vertical"
+
+                    size_hint_y: None
+                    height: dp(145)
+
+                    padding: dp(15)
+                    spacing: dp(10)
+
+                    radius:
+                        [dp(18), dp(18), dp(18), dp(18)]
+
+                    elevation: 3
+
+                    MDLabel:
+                        text: "Emergency Siren"
+                        halign: "center"
+
+                        bold: True
+
+                        size_hint_y: None
+                        height: dp(30)
+
+                    MDLabel:
+                        text: root.siren_status
+                        halign: "center"
+
+                        theme_text_color: "Secondary"
+
+                        size_hint_y: None
+                        height: dp(25)
+
+                    MDRaisedButton:
+                        text: root.siren_button_text
+
+                        size_hint_x: 0.8
+                        size_hint_y: None
+                        height: dp(45)
+
+                        pos_hint:
+                            {"center_x": 0.5}
+
+                        on_release:
+                            root.siren_pressed()
+
+                # ==================================================
+                # SOS WORKFLOW TITLE
+                # ==================================================
+
+                MDLabel:
+                    text: "SOS Emergency Workflow"
+
+                    halign: "left"
+                    bold: True
+
+                    font_style: "H6"
+
+                    size_hint_y: None
+                    height: dp(40)
+
+                # ==================================================
+                # WORKFLOW CARD
+                # ==================================================
+
+                MDCard:
+                    orientation: "vertical"
+
+                    size_hint_y: None
+                    height: dp(330)
+
+                    padding: dp(15)
+                    spacing: dp(5)
+
+                    radius:
+                        [dp(18), dp(18), dp(18), dp(18)]
+
+                    elevation: 2
+
+                    MDLabel:
+                        text: "1. Live Location"
+                        size_hint_y: None
+                        height: dp(35)
+
+                    MDLabel:
+                        text: "2. Capture Photo"
+                        size_hint_y: None
+                        height: dp(35)
+
+                    MDLabel:
+                        text: "3. Record Video"
+                        size_hint_y: None
+                        height: dp(35)
+
+                    MDLabel:
+                        text: "4. Record Audio"
+                        size_hint_y: None
+                        height: dp(35)
+
+                    MDLabel:
+                        text: "5. Load Emergency Contacts"
+                        size_hint_y: None
+                        height: dp(35)
+
+                    MDLabel:
+                        text: "6. Send Emergency Alert"
+                        size_hint_y: None
+                        height: dp(35)
+
+                    MDLabel:
+                        text: "7. Find Nearby Police"
+                        size_hint_y: None
+                        height: dp(35)
+
+                    MDLabel:
+                        text: "8. SOS Completed"
+                        size_hint_y: None
+                        height: dp(35)
+
+                # ==================================================
+                # CURRENT STEP
+                # ==================================================
+
+                MDCard:
+                    orientation: "vertical"
+
+                    size_hint_y: None
+                    height: dp(100)
+
+                    padding: dp(15)
+
+                    radius:
+                        [dp(18), dp(18), dp(18), dp(18)]
+
+                    elevation: 2
+
+                    MDLabel:
+                        text: "Current SOS Status"
+                        halign: "center"
+
+                        bold: True
+
+                        size_hint_y: None
+                        height: dp(30)
+
+                    MDLabel:
+                        text: root.status_text
+                        halign: "center"
+
+                        theme_text_color: "Custom"
+                        text_color: 0.85, 0.10, 0.10, 1
+
+                        size_hint_y: None
+                        height: dp(35)
+
+                # ==================================================
+                # INFORMATION
+                # ==================================================
+
+                MDCard:
+                    orientation: "vertical"
+
+                    size_hint_y: None
+                    height: dp(125)
+
+                    padding: dp(15)
+
+                    radius:
+                        [dp(18), dp(18), dp(18), dp(18)]
+
+                    elevation: 2
+
+                    MDLabel:
+                        text: "Emergency Features"
+                        halign: "center"
+
+                        bold: True
+
+                        size_hint_y: None
+                        height: dp(30)
+
+                    MDLabel:
+                        text: "• Live GPS Location\\n• Emergency Contacts\\n• SMS Alert\\n• Photo / Video / Audio Evidence\\n• Emergency Siren"
+
+                        halign: "left"
+
+                        theme_text_color: "Secondary"
+
+                        size_hint_y: None
+                        height: dp(80)
+
+                # ==================================================
+                # FINAL CANCEL BUTTON
+                # ==================================================
+
+                MDRaisedButton:
+                    text: "STOP / CANCEL EMERGENCY"
+
+                    size_hint_x: 0.9
+                    size_hint_y: None
+                    height: dp(55)
+
+                    pos_hint:
+                        {"center_x": 0.5}
+
+                    on_release:
+                        root.cancel_sos()
+
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)

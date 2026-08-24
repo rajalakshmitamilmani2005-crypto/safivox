@@ -1,0 +1,127 @@
+#:import dp kivy.metrics.dp
+
+<SafivoxFooter>:
+    orientation: "horizontal"
+    size_hint_y: None
+    height: dp(68)
+    padding: dp(4), dp(3)
+    spacing: dp(2)
+
+    # Hide footer on login/signup/splash
+    opacity: 0 if root.is_hidden() else 1
+    disabled: True if root.is_hidden() else False
+
+    md_bg_color: 1, 1, 1, 1
+    elevation: 10
+
+    # ==========================================================
+    # HOME
+    # ==========================================================
+
+    MDBoxLayout:
+        orientation: "vertical"
+        size_hint_x: 1
+
+        MDIconButton:
+            icon: "home"
+            icon_size: "25sp"
+            theme_icon_color: "Custom"
+            icon_color: 0.22, 0.18, 0.55, 1
+            size_hint_y: None
+            height: dp(38)
+            pos_hint: {"center_x": 0.5}
+            on_release:
+                root.go_to("home")
+
+        MDLabel:
+            text: "Home"
+            halign: "center"
+            font_size: "9sp"
+            size_hint_y: None
+            height: dp(18)
+            theme_text_color: "Custom"
+            text_color: 0.22, 0.18, 0.55, 1
+
+    # ==========================================================
+    # EVIDENCE
+    # ==========================================================
+
+    MDBoxLayout:
+        orientation: "vertical"
+        size_hint_x: 1
+
+        MDIconButton:
+            icon: "camera"
+            icon_size: "25sp"
+            theme_icon_color: "Custom"
+            icon_color: 0.95, 0.45, 0.18, 1
+            size_hint_y: None
+            height: dp(38)
+            pos_hint: {"center_x": 0.5}
+            on_release:
+                root.go_to("evidence")
+
+        MDLabel:
+            text: "Evidence"
+            halign: "center"
+            font_size: "9sp"
+            size_hint_y: None
+            height: dp(18)
+            theme_text_color: "Custom"
+            text_color: 0.30, 0.30, 0.35, 1
+
+    # ==========================================================
+    # HISTORY
+    # ==========================================================
+
+    MDBoxLayout:
+        orientation: "vertical"
+        size_hint_x: 1
+
+        MDIconButton:
+            icon: "history"
+            icon_size: "25sp"
+            theme_icon_color: "Custom"
+            icon_color: 0.52, 0.30, 0.90, 1
+            size_hint_y: None
+            height: dp(38)
+            pos_hint: {"center_x": 0.5}
+            on_release:
+                root.go_to("history")
+
+        MDLabel:
+            text: "History"
+            halign: "center"
+            font_size: "9sp"
+            size_hint_y: None
+            height: dp(18)
+            theme_text_color: "Custom"
+            text_color: 0.30, 0.30, 0.35, 1
+
+    # ==========================================================
+    # SETTINGS
+    # ==========================================================
+
+    MDBoxLayout:
+        orientation: "vertical"
+        size_hint_x: 1
+
+        MDIconButton:
+            icon: "cog"
+            icon_size: "25sp"
+            theme_icon_color: "Custom"
+            icon_color: 0.35, 0.35, 0.40, 1
+            size_hint_y: None
+            height: dp(38)
+            pos_hint: {"center_x": 0.5}
+            on_release:
+                root.go_to("settings")
+
+        MDLabel:
+            text: "Settings"
+            halign: "center"
+            font_size: "9sp"
+            size_hint_y: None
+            height: dp(18)
+            theme_text_color: "Custom"
+            text_color: 0.30, 0.30, 0.35, 1

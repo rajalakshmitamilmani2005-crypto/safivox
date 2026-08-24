@@ -1,0 +1,126 @@
+<AboutScreen>:
+
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: "15dp"
+        spacing: "10dp"
+
+
+        MDTopAppBar:
+            title: "About Safivox"
+            elevation: 10
+
+            left_action_items:
+                [["arrow-left", lambda x: root.go_back()]]
+
+
+        ScrollView:
+
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: "15dp"
+                padding: "10dp"
+                size_hint_y: None
+                height: self.minimum_height
+
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "20dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "200dp"
+                    elevation: 5
+
+
+                    MDLabel:
+                        text: "Safivox"
+                        halign: "center"
+                        font_style: "H5"
+                        size_hint_y: None
+                        height: "40dp"
+
+
+                    MDLabel:
+                        text: "Safivox is a women's safety application designed to provide quick emergency assistance during dangerous situations."
+                        halign: "center"
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "230dp"
+                    elevation: 5
+
+
+                    MDLabel:
+                        text: "About the Application"
+                        font_style: "H6"
+                        size_hint_y: None
+                        height: "40dp"
+
+
+                    MDLabel:
+                        text: "Safivox helps users send SOS alerts, manage emergency contacts, share location, capture evidence and receive immediate help during emergencies."
+
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "300dp"
+                    elevation: 5
+
+
+                    MDLabel:
+                        text: "Key Features"
+                        font_style: "H6"
+                        size_hint_y: None
+                        height: "40dp"
+
+
+                    MDLabel:
+                        text: "• SOS Emergency Alert\n• Emergency Contacts\n• Live Location Sharing\n• Photo, Video and Audio Evidence Capture\n• Fake Call Assistance\n• Safety History Tracking"
+
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+
+
+
+                MDCard:
+                    orientation: "vertical"
+                    padding: "15dp"
+                    spacing: "10dp"
+                    size_hint_y: None
+                    height: "220dp"
+                    elevation: 5
+
+
+                    MDLabel:
+                        text: "Version Information"
+                        font_style: "H6"
+                        size_hint_y: None
+                        height: "40dp"
+
+
+                    MDLabel:
+                        text: "Application Name : Safivox\nVersion : 1.0\nDeveloped Using : Python and KivyMD\nPurpose : Women's Safety and Emergency Support"
+
+                        text_size: self.width, None
+                        size_hint_y: None
+                        height: self.texture_size[1]
+

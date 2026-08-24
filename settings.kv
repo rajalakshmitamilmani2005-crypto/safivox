@@ -1,0 +1,182 @@
+#:import dp kivy.metrics.dp
+
+<SettingsScreen>:
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDTopAppBar:
+            title: "Settings"
+
+            left_action_items:
+                [["arrow-left", lambda x: root.go_back()]]
+
+        ScrollView:
+
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+                padding: dp(20)
+                spacing: dp(15)
+
+                MDCard:
+                    orientation: "vertical"
+                    adaptive_height: True
+                    padding: dp(20)
+                    spacing: dp(15)
+                    radius: [20]
+                    elevation: 8
+
+                    MDLabel:
+                        text: "Application Settings"
+                        halign: "center"
+                        font_style: "H5"
+                        bold: True
+
+                    MDSeparator:
+
+                    # -----------------------
+                    # Dark Mode
+                    # -----------------------
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: "Dark Mode"
+
+                        MDSwitch:
+                            id: dark_mode
+
+                    # -----------------------
+                    # SOS Countdown
+                    # -----------------------
+
+                    MDTextField:
+                        id: countdown
+                        hint_text: "SOS Countdown (Seconds)"
+                        helper_text: "Example: 5"
+                        helper_text_mode: "on_focus"
+                        input_filter: "int"
+
+                    # -----------------------
+                    # Auto Photo
+                    # -----------------------
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: "Auto Capture Photo"
+
+                        MDSwitch:
+                            id: auto_photo
+
+                    # -----------------------
+                    # Auto Video
+                    # -----------------------
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: "Auto Record Video"
+
+                        MDSwitch:
+                            id: auto_video
+
+                    # -----------------------
+                    # Auto Audio
+                    # -----------------------
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: "Auto Record Audio"
+
+                        MDSwitch:
+                            id: auto_audio
+
+                    # -----------------------
+                    # Vibration
+                    # -----------------------
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: "Vibration"
+
+                        MDSwitch:
+                            id: vibration
+
+                    # -----------------------
+                    # Siren
+                    # -----------------------
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: "Emergency Siren"
+
+                        MDSwitch:
+                            id: siren
+
+                    # -----------------------
+                    # Location
+                    # -----------------------
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: "Auto Location"
+
+                        MDSwitch:
+                            id: location
+
+                    # -----------------------
+                    # Voice Activation
+                    # -----------------------
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: "Voice Activation"
+
+                        MDSwitch:
+                            id: voice
+
+                    # -----------------------
+                    # Shake Detection
+                    # -----------------------
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        MDLabel:
+                            text: "Shake Detection"
+
+                        MDSwitch:
+                            id: shake
+
+                    MDSeparator:
+
+                    MDRaisedButton:
+                        text: "Save Settings"
+                        pos_hint: {"center_x": .5}
+                        md_bg_color: 0.2, 0.6, 1, 1
+
+                        on_release:
+                            root.save_settings()
+
+                    MDRaisedButton:
+                        text: "Reset Settings"
+                        pos_hint: {"center_x": .5}
+                        md_bg_color: 1, 0.3, 0.3, 1
+
+                        on_release:
+                            root.reset_settings()

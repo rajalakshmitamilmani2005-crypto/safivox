@@ -1,0 +1,457 @@
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+
+<SignupScreen>:
+
+    # ======================================================
+    # BACKGROUND
+    # ======================================================
+
+    canvas.before:
+
+        Color:
+            rgba: 0.97, 0.96, 1, 1
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    MDBoxLayout:
+
+        orientation: "vertical"
+
+
+        # ==================================================
+        # TOP BAR
+        # ==================================================
+
+        MDTopAppBar:
+
+            title: "Create Account"
+
+            elevation: 2
+
+            left_action_items:
+                [["arrow-left", lambda x: root.go_back()]]
+
+
+        # ==================================================
+        # CONTENT
+        # ==================================================
+
+        ScrollView:
+
+            do_scroll_x: False
+
+            do_scroll_y: True
+
+            bar_width: 0
+
+
+            MDBoxLayout:
+
+                orientation: "vertical"
+
+                size_hint_y: None
+
+                height: self.minimum_height
+
+                padding:
+                    dp(28), dp(25), dp(28), dp(35)
+
+                spacing: dp(10)
+
+
+                # ==========================================
+                # ICON
+                # ==========================================
+
+                MDIcon:
+
+                    icon: "account-plus"
+
+                    halign: "center"
+
+                    font_size: dp(60)
+
+                    theme_text_color: "Custom"
+
+                    text_color:
+                        0.35, 0.15, 0.65, 1
+
+                    size_hint_y: None
+
+                    height: dp(70)
+
+
+                # ==========================================
+                # TITLE
+                # ==========================================
+
+                MDLabel:
+
+                    text: "Create Your Account"
+
+                    halign: "center"
+
+                    font_style: "H5"
+
+                    bold: True
+
+                    theme_text_color: "Primary"
+
+                    size_hint_y: None
+
+                    height: dp(45)
+
+
+                MDLabel:
+
+                    text:
+                        "Create your Safivox account to continue."
+
+                    halign: "center"
+
+                    theme_text_color: "Secondary"
+
+                    font_size: sp(12)
+
+                    text_size:
+                        self.width, None
+
+                    size_hint_y: None
+
+                    height: dp(45)
+
+
+                # ==========================================
+                # NAME LABEL
+                # ==========================================
+
+                MDLabel:
+
+                    text: "Full Name"
+
+                    bold: True
+
+                    size_hint_y: None
+
+                    height: dp(28)
+
+
+                # ==========================================
+                # NAME FIELD
+                # ==========================================
+
+                MDTextField:
+
+                    id: name_field
+
+                    hint_text: "Enter your full name"
+
+                    icon_left: "account-outline"
+
+                    mode: "rectangle"
+
+                    helper_text:
+                        root.name_error
+
+                    helper_text_mode:
+                        "on_error"
+
+                    error:
+                        bool(root.name_error)
+
+                    size_hint_y: None
+
+                    height: dp(60)
+
+
+                # ==========================================
+                # EMAIL LABEL
+                # ==========================================
+
+                MDLabel:
+
+                    text: "Email Address"
+
+                    bold: True
+
+                    size_hint_y: None
+
+                    height: dp(28)
+
+
+                # ==========================================
+                # EMAIL FIELD
+                # ==========================================
+
+                MDTextField:
+
+                    id: email_field
+
+                    hint_text: "Enter your email"
+
+                    icon_left: "email-outline"
+
+                    mode: "rectangle"
+
+                    helper_text:
+                        root.email_error
+
+                    helper_text_mode:
+                        "on_error"
+
+                    error:
+                        bool(root.email_error)
+
+                    size_hint_y: None
+
+                    height: dp(60)
+
+
+                # ==========================================
+                # PASSWORD LABEL
+                # ==========================================
+
+                MDLabel:
+
+                    text: "Password"
+
+                    bold: True
+
+                    size_hint_y: None
+
+                    height: dp(28)
+
+
+                # ==========================================
+                # PASSWORD FIELD
+                # ==========================================
+
+                MDBoxLayout:
+
+                    orientation: "horizontal"
+
+                    size_hint_y: None
+
+                    height: dp(60)
+
+                    spacing: dp(5)
+
+
+                    MDTextField:
+
+                        id: password_field
+
+                        hint_text:
+                            "Minimum 6 characters"
+
+                        icon_left:
+                            "lock-outline"
+
+                        mode:
+                            "rectangle"
+
+                        password:
+                            not root.password_visible
+
+                        helper_text:
+                            root.password_error
+
+                        helper_text_mode:
+                            "on_error"
+
+                        error:
+                            bool(root.password_error)
+
+                        size_hint_x: 0.85
+
+                        size_hint_y: None
+
+                        height: dp(60)
+
+
+                    MDIconButton:
+
+                        icon:
+                            "eye-off-outline" \
+                            if not root.password_visible \
+                            else "eye-outline"
+
+                        size_hint_x: 0.15
+
+                        size_hint_y: None
+
+                        height: dp(60)
+
+                        on_release:
+                            root.toggle_password()
+
+
+                # ==========================================
+                # CONFIRM PASSWORD LABEL
+                # ==========================================
+
+                MDLabel:
+
+                    text: "Confirm Password"
+
+                    bold: True
+
+                    size_hint_y: None
+
+                    height: dp(28)
+
+
+                # ==========================================
+                # CONFIRM PASSWORD
+                # ==========================================
+
+                MDBoxLayout:
+
+                    orientation: "horizontal"
+
+                    size_hint_y: None
+
+                    height: dp(60)
+
+                    spacing: dp(5)
+
+
+                    MDTextField:
+
+                        id: confirm_password_field
+
+                        hint_text:
+                            "Re-enter your password"
+
+                        icon_left:
+                            "lock-check-outline"
+
+                        mode:
+                            "rectangle"
+
+                        password:
+                            not root.confirm_visible
+
+                        helper_text:
+                            root.confirm_error
+
+                        helper_text_mode:
+                            "on_error"
+
+                        error:
+                            bool(root.confirm_error)
+
+                        size_hint_x: 0.85
+
+                        size_hint_y: None
+
+                        height: dp(60)
+
+
+                    MDIconButton:
+
+                        icon:
+                            "eye-off-outline" \
+                            if not root.confirm_visible \
+                            else "eye-outline"
+
+                        size_hint_x: 0.15
+
+                        size_hint_y: None
+
+                        height: dp(60)
+
+                        on_release:
+                            root.toggle_confirm_password()
+
+
+                # ==========================================
+                # GENERAL ERROR
+                # ==========================================
+
+                MDLabel:
+
+                    text:
+                        root.general_error
+
+                    halign: "center"
+
+                    theme_text_color: "Custom"
+
+                    text_color:
+                        0.85, 0.08, 0.08, 1
+
+                    font_size: sp(12)
+
+                    text_size:
+                        self.width, None
+
+                    size_hint_y: None
+
+                    height:
+                        dp(35) if root.general_error else dp(5)
+
+
+                # ==========================================
+                # CREATE ACCOUNT
+                # ==========================================
+
+                MDRaisedButton:
+
+                    text: "CREATE ACCOUNT"
+
+                    size_hint_x: 1
+
+                    size_hint_y: None
+
+                    height: dp(52)
+
+                    md_bg_color:
+                        0.35, 0.15, 0.65, 1
+
+                    theme_text_color:
+                        "Custom"
+
+                    text_color:
+                        1, 1, 1, 1
+
+                    on_release:
+                        root.create_account()
+
+
+                # ==========================================
+                # ALREADY HAVE ACCOUNT
+                # ==========================================
+
+                MDTextButton:
+
+                    text:
+                        "Already have an account? Login"
+
+                    pos_hint:
+                        {"center_x": 0.5}
+
+                    theme_text_color:
+                        "Custom"
+
+                    text_color:
+                        0.35, 0.15, 0.65, 1
+
+                    size_hint_y: None
+
+                    height: dp(45)
+
+                    on_release:
+                        root.go_back()
+
+
+                Widget:
+
+                    size_hint_y: None
+
+                    height: dp(20)

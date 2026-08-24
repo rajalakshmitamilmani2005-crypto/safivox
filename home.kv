@@ -1,0 +1,791 @@
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+
+<HomeScreen>:
+
+    MDFloatLayout:
+
+        # =========================================================
+        # BACKGROUND
+        # =========================================================
+
+        canvas.before:
+
+            Color:
+                rgba: 0.96, 0.97, 1, 1
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+        # =========================================================
+        # TOP HEADER
+        # =========================================================
+
+        MDCard:
+
+            size_hint: 1, None
+            height: dp(82)
+
+            pos_hint: {"top": 1}
+
+            radius: [0, 0, 22, 22]
+
+            elevation: 6
+
+            md_bg_color: 1, 1, 1, 1
+
+            padding: dp(6), dp(5)
+
+
+            MDBoxLayout:
+
+                orientation: "horizontal"
+
+                spacing: dp(3)
+
+
+                # =================================================
+                # MENU BUTTON
+                # =================================================
+
+                MDIconButton:
+
+                    id: menu_button
+
+                    icon: "menu"
+
+                    icon_size: "30sp"
+
+                    theme_icon_color: "Custom"
+
+                    icon_color: 0.22, 0.18, 0.55, 1
+
+                    size_hint: None, None
+
+                    size: dp(50), dp(50)
+
+                    pos_hint: {"center_y": 0.5}
+
+                    on_release:
+                        root.open_menu()
+
+
+                # =================================================
+                # APP LOGO
+                # =================================================
+
+                Image:
+
+                    id: logo_image
+
+                    source: root.app_logo
+
+                    size_hint: None, None
+
+                    size: dp(48), dp(48)
+
+                    allow_stretch: True
+
+                    keep_ratio: True
+
+                    pos_hint: {"center_y": 0.5}
+
+
+                # =================================================
+                # APP TITLE
+                # =================================================
+
+                MDBoxLayout:
+
+                    orientation: "vertical"
+
+                    size_hint_x: None
+
+                    width: dp(145)
+
+                    spacing: dp(0)
+
+                    pos_hint: {"center_y": 0.5}
+
+
+                    MDLabel:
+
+                        text: "SAFIVOX"
+
+                        font_size: sp(19)
+
+                        bold: True
+
+                        theme_text_color: "Custom"
+
+                        text_color: 0.22, 0.18, 0.55, 1
+
+                        size_hint_y: None
+
+                        height: dp(29)
+
+
+                    MDLabel:
+
+                        text: "Stay Safe • Stay Connected"
+
+                        font_size: sp(8.5)
+
+                        theme_text_color: "Custom"
+
+                        text_color: 0.42, 0.42, 0.48, 1
+
+                        size_hint_y: None
+
+                        height: dp(18)
+
+
+                Widget:
+
+
+                # =================================================
+                # NOTIFICATION BUTTON
+                # =================================================
+
+                MDIconButton:
+
+                    id: notification_button
+
+                    icon: "bell-outline"
+
+                    icon_size: "27sp"
+
+                    theme_icon_color: "Custom"
+
+                    icon_color: 0.22, 0.18, 0.55, 1
+
+                    size_hint: None, None
+
+                    size: dp(46), dp(46)
+
+                    pos_hint: {"center_y": 0.5}
+
+                    on_release:
+                        root.notification_pressed()
+
+
+                # =================================================
+                # CIRCULAR PROFILE PHOTO
+                # =================================================
+
+                MDCard:
+
+                    id: profile_card
+
+                    size_hint: None, None
+
+                    size: dp(54), dp(54)
+
+                    radius: [27]
+
+                    elevation: 5
+
+                    md_bg_color: 0.90, 0.88, 1, 1
+
+                    pos_hint: {"center_y": 0.5}
+
+
+                    FloatLayout:
+
+
+                        # -----------------------------------------
+                        # PROFILE PHOTO
+                        # -----------------------------------------
+
+                        Image:
+
+                            id: profile_image
+
+                            source: root.user_photo if root.user_photo else "assets/profile.png"
+
+                            size_hint: 1, 1
+
+                            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                            allow_stretch: True
+
+                            keep_ratio: False
+
+                            nocache: True
+
+
+                        # -----------------------------------------
+                        # CLICK AREA
+                        # -----------------------------------------
+
+                        Button:
+
+                            background_normal: ""
+
+                            background_down: ""
+
+                            background_color: 0, 0, 0, 0
+
+                            border: 0, 0, 0, 0
+
+                            size_hint: 1, 1
+
+                            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+                            on_release:
+                                root.profile_pressed()
+
+
+        # =========================================================
+        # MAIN SCROLL AREA
+        # =========================================================
+
+        ScrollView:
+
+            size_hint: 1, 0.76
+
+            pos_hint: {"x": 0, "top": 0.89}
+
+            do_scroll_x: False
+
+
+            MDBoxLayout:
+
+                orientation: "vertical"
+
+                spacing: dp(14)
+
+                padding: dp(14), dp(12), dp(14), dp(110)
+
+                size_hint_y: None
+
+                height: self.minimum_height
+
+
+                # =================================================
+                # WELCOME
+                # =================================================
+
+                MDBoxLayout:
+
+                    orientation: "vertical"
+
+                    spacing: dp(2)
+
+                    size_hint_y: None
+
+                    height: dp(58)
+
+
+                    MDLabel:
+
+                        id: welcome_name
+
+                        text: "Hello, User"
+
+                        font_size: sp(22)
+
+                        bold: True
+
+                        theme_text_color: "Custom"
+
+                        text_color: 0.14, 0.14, 0.20, 1
+
+                        size_hint_y: None
+
+                        height: dp(30)
+
+
+                    MDLabel:
+
+                        id: user_email
+
+                        text: "Your safety companion"
+
+                        font_size: sp(11)
+
+                        theme_text_color: "Custom"
+
+                        text_color: 0.45, 0.45, 0.50, 1
+
+                        size_hint_y: None
+
+                        height: dp(20)
+
+
+                # =================================================
+                # SAFETY STATUS
+                # =================================================
+
+                MDCard:
+
+                    size_hint_y: None
+
+                    height: dp(112)
+
+                    radius: [24]
+
+                    elevation: 5
+
+                    md_bg_color: 1, 1, 1, 1
+
+                    padding: dp(16)
+
+
+                    MDBoxLayout:
+
+                        orientation: "horizontal"
+
+                        spacing: dp(12)
+
+
+                        MDIconButton:
+
+                            icon: "shield-check"
+
+                            icon_size: "40sp"
+
+                            theme_icon_color: "Custom"
+
+                            icon_color: 0.08, 0.67, 0.38, 1
+
+                            size_hint: None, None
+
+                            size: dp(55), dp(55)
+
+                            pos_hint: {"center_y": 0.5}
+
+
+                        MDBoxLayout:
+
+                            orientation: "vertical"
+
+                            spacing: dp(1)
+
+
+                            MDLabel:
+
+                                text: "Safety Status"
+
+                                font_size: sp(14)
+
+                                bold: True
+
+                                size_hint_y: None
+
+                                height: dp(24)
+
+
+                            MDLabel:
+
+                                text: "SAFE"
+
+                                font_size: sp(22)
+
+                                bold: True
+
+                                theme_text_color: "Custom"
+
+                                text_color: 0.08, 0.67, 0.38, 1
+
+                                size_hint_y: None
+
+                                height: dp(31)
+
+
+                            MDLabel:
+
+                                text: "Emergency tools are ready."
+
+                                font_size: sp(10)
+
+                                theme_text_color: "Secondary"
+
+
+                # =================================================
+                # EMERGENCY SOS
+                # =================================================
+
+                MDCard:
+
+                    size_hint_y: None
+
+                    height: dp(210)
+
+                    radius: [28]
+
+                    elevation: 8
+
+                    md_bg_color: 0.95, 0.18, 0.20, 1
+
+                    padding: dp(18)
+
+
+                    MDBoxLayout:
+
+                        orientation: "vertical"
+
+                        spacing: dp(6)
+
+
+                        MDLabel:
+
+                            text: "Emergency SOS"
+
+                            halign: "center"
+
+                            font_size: sp(18)
+
+                            bold: True
+
+                            theme_text_color: "Custom"
+
+                            text_color: 1, 1, 1, 1
+
+                            size_hint_y: None
+
+                            height: dp(30)
+
+
+                        MDLabel:
+
+                            text: "Tap the button when you need immediate help"
+
+                            halign: "center"
+
+                            font_size: sp(10)
+
+                            theme_text_color: "Custom"
+
+                            text_color: 1, 1, 1, 0.85
+
+                            size_hint_y: None
+
+                            height: dp(25)
+
+
+                        Widget:
+
+
+                        MDRaisedButton:
+
+                            text: "START SOS"
+
+                            size_hint: 0.72, None
+
+                            height: dp(52)
+
+                            pos_hint: {"center_x": 0.5}
+
+                            md_bg_color: 1, 1, 1, 1
+
+                            text_color: 0.90, 0.15, 0.18, 1
+
+                            font_size: sp(14)
+
+                            on_release:
+                                root.sos_pressed()
+
+
+                        Widget:
+
+
+                # =================================================
+                # LIVE LOCATION
+                # =================================================
+
+                MDCard:
+
+                    size_hint_y: None
+
+                    height: dp(92)
+
+                    radius: [20]
+
+                    elevation: 3
+
+                    md_bg_color: 1, 1, 1, 1
+
+                    padding: dp(12)
+
+
+                    MDBoxLayout:
+
+                        orientation: "horizontal"
+
+                        spacing: dp(8)
+
+
+                        MDIconButton:
+
+                            icon: "map-marker"
+
+                            icon_size: "30sp"
+
+                            theme_icon_color: "Custom"
+
+                            icon_color: 0.10, 0.55, 0.90, 1
+
+                            size_hint: None, None
+
+                            size: dp(48), dp(48)
+
+                            pos_hint: {"center_y": 0.5}
+
+
+                        MDBoxLayout:
+
+                            orientation: "vertical"
+
+                            spacing: dp(1)
+
+
+                            MDLabel:
+
+                                text: "Live Location"
+
+                                bold: True
+
+                                font_size: sp(14)
+
+                                size_hint_y: None
+
+                                height: dp(24)
+
+
+                            MDLabel:
+
+                                text: "Share your current location"
+
+                                theme_text_color: "Secondary"
+
+                                font_size: sp(10)
+
+
+                        Widget:
+
+
+                        MDRaisedButton:
+
+                            text: "OPEN"
+
+                            size_hint: None, None
+
+                            size: dp(78), dp(40)
+
+                            pos_hint: {"center_y": 0.5}
+
+                            on_release:
+                                root.location_pressed()
+
+
+                # =================================================
+                # EMERGENCY CONTACTS
+                # =================================================
+
+                MDCard:
+
+                    size_hint_y: None
+
+                    height: dp(92)
+
+                    radius: [20]
+
+                    elevation: 3
+
+                    md_bg_color: 1, 1, 1, 1
+
+                    padding: dp(12)
+
+
+                    MDBoxLayout:
+
+                        orientation: "horizontal"
+
+                        spacing: dp(8)
+
+
+                        MDIconButton:
+
+                            icon: "account-group"
+
+                            icon_size: "30sp"
+
+                            theme_icon_color: "Custom"
+
+                            icon_color: 0.39, 0.30, 0.94, 1
+
+                            size_hint: None, None
+
+                            size: dp(48), dp(48)
+
+                            pos_hint: {"center_y": 0.5}
+
+
+                        MDBoxLayout:
+
+                            orientation: "vertical"
+
+                            spacing: dp(1)
+
+
+                            MDLabel:
+
+                                text: "Emergency Contacts"
+
+                                bold: True
+
+                                font_size: sp(14)
+
+                                size_hint_y: None
+
+                                height: dp(24)
+
+
+                            MDLabel:
+
+                                text: "Manage your trusted contacts"
+
+                                theme_text_color: "Secondary"
+
+                                font_size: sp(10)
+
+
+                        Widget:
+
+
+                        MDRaisedButton:
+
+                            text: "OPEN"
+
+                            size_hint: None, None
+
+                            size: dp(78), dp(40)
+
+                            pos_hint: {"center_y": 0.5}
+
+                            on_release:
+                                root.contacts_pressed()
+
+
+        # =========================================================
+        # NAVIGATION DRAWER
+        # =========================================================
+
+        MDNavigationDrawer:
+
+            id: nav_drawer
+
+            scrim_color: 0, 0, 0, 0.55
+
+
+            MDNavigationDrawerMenu:
+
+
+                # =================================================
+                # DRAWER HEADER
+                # =================================================
+
+                MDNavigationDrawerHeader:
+
+                    title: "SAFIVOX"
+
+                    text: "Your Safety Companion"
+
+                    spacing: "4dp"
+
+                    padding: "16dp"
+
+
+                # =================================================
+                # HOME
+                # =================================================
+
+                MDNavigationDrawerItem:
+
+                    icon: "home"
+
+                    text: "Home"
+
+                    on_release:
+                        root.close_menu()
+
+
+
+                # =================================================
+                # LOGOUT
+                # ONLY IN MENU
+                # =================================================
+
+                MDNavigationDrawerItem:
+
+                    icon: "logout"
+
+                    text: "Logout"
+
+                    on_release:
+                        root.close_menu()
+                        root.logout()
+
+
+                # =================================================
+                # HELP
+                # =================================================
+
+                MDNavigationDrawerItem:
+
+                    icon: "help-circle"
+
+                    text: "Help"
+
+                    on_release:
+                        root.close_menu()
+                        root.help_pressed()
+
+
+                # =================================================
+                # PRIVACY POLICY
+                # =================================================
+
+                MDNavigationDrawerItem:
+
+                    icon: "shield-lock"
+
+                    text: "Privacy Policy"
+
+                    on_release:
+                        root.close_menu()
+                        root.privacy_pressed()
+
+
+                # =================================================
+                # ABOUT
+                # =================================================
+
+                MDNavigationDrawerItem:
+
+                    icon: "information"
+
+                    text: "About"
+
+                    on_release:
+                        root.close_menu()
+                        root.about_pressed()
+
+
+                # =================================================
+                # RATE APP
+                # =================================================
+
+                MDNavigationDrawerItem:
+
+                    icon: "star"
+
+                    text: "Rate App"
+
+                    on_release:
+                        root.close_menu()
+                        root.rate_app()

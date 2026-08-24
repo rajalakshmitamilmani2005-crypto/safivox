@@ -1,0 +1,108 @@
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+
+<SplashScreen>:
+
+    MDFloatLayout:
+
+        canvas.before:
+
+            Color:
+                rgba: 0.96, 0.97, 1, 1
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+        MDCard:
+
+            size_hint: 0.86, 0.58
+
+            pos_hint:
+                {"center_x": 0.5, "center_y": 0.5}
+
+            radius: [30]
+
+            elevation: 8
+
+            padding: dp(24)
+
+
+            MDBoxLayout:
+
+                orientation: "vertical"
+
+                spacing: dp(10)
+
+
+                Widget:
+
+
+                Image:
+
+                    source: "assets/logo.png"
+
+                    size_hint: None, None
+
+                    size: dp(130), dp(130)
+
+                    pos_hint:
+                        {"center_x": 0.5}
+
+
+                MDLabel:
+
+                    text: "SAFIVOX"
+
+                    halign: "center"
+
+                    font_size: sp(28)
+
+                    bold: True
+
+                    theme_text_color: "Custom"
+
+                    text_color:
+                        0.28, 0.20, 0.72, 1
+
+                    size_hint_y: None
+
+                    height: dp(40)
+
+
+                MDLabel:
+
+                    text: "Your Safety Companion"
+
+                    halign: "center"
+
+                    font_size: sp(13)
+
+                    theme_text_color: "Secondary"
+
+                    size_hint_y: None
+
+                    height: dp(28)
+
+
+                Widget:
+
+
+                MDLabel:
+
+                    text: "Loading..."
+
+                    halign: "center"
+
+                    font_size: sp(11)
+
+                    theme_text_color: "Secondary"
+
+                    size_hint_y: None
+
+                    height: dp(24)
+
+
+                Widget:

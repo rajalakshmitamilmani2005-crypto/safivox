@@ -1,0 +1,517 @@
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+
+<EvidenceScreen>:
+
+    MDFloatLayout:
+
+        canvas.before:
+
+            Color:
+                rgba: 0.96, 0.97, 1, 1
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+
+        # =====================================================
+        # HEADER
+        # =====================================================
+
+        MDCard:
+
+            size_hint: 1, None
+            height: dp(72)
+
+            pos_hint:
+                {"top": 1}
+
+            radius:
+                [0, 0, 20, 20]
+
+            elevation: 5
+
+            md_bg_color:
+                1, 1, 1, 1
+
+
+            MDBoxLayout:
+
+                orientation: "horizontal"
+
+                padding:
+                    dp(6), 0
+
+                spacing:
+                    dp(4)
+
+
+                MDIconButton:
+
+                    icon:
+                        "arrow-left"
+
+                    icon_size:
+                        "28sp"
+
+                    theme_icon_color:
+                        "Custom"
+
+                    icon_color:
+                        0.22, 0.18, 0.55, 1
+
+                    size_hint:
+                        None, None
+
+                    size:
+                        dp(48), dp(48)
+
+                    pos_hint:
+                        {"center_y": 0.5}
+
+                    on_release:
+                        root.go_back()
+
+
+                MDLabel:
+
+                    text:
+                        "Evidence"
+
+                    font_size:
+                        sp(20)
+
+                    bold:
+                        True
+
+                    theme_text_color:
+                        "Custom"
+
+                    text_color:
+                        0.22, 0.18, 0.55, 1
+
+                    pos_hint:
+                        {"center_y": 0.5}
+
+
+        # =====================================================
+        # MAIN CONTENT
+        # =====================================================
+
+        MDBoxLayout:
+
+            orientation:
+                "vertical"
+
+            spacing:
+                dp(14)
+
+            padding:
+                dp(14), dp(88), dp(14), dp(20)
+
+
+            # =================================================
+            # STATUS
+            # =================================================
+
+            MDCard:
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(72)
+
+                radius:
+                    [18]
+
+                elevation:
+                    3
+
+                md_bg_color:
+                    1, 1, 1, 1
+
+                padding:
+                    dp(12)
+
+
+                MDBoxLayout:
+
+                    orientation:
+                        "horizontal"
+
+                    spacing:
+                        dp(10)
+
+
+                    MDIconButton:
+
+                        icon:
+                            "shield-check"
+
+                        icon_size:
+                            "30sp"
+
+                        theme_icon_color:
+                            "Custom"
+
+                        icon_color:
+                            0.08, 0.67, 0.38, 1
+
+                        size_hint:
+                            None, None
+
+                        size:
+                            dp(46), dp(46)
+
+
+                    MDBoxLayout:
+
+                        orientation:
+                            "vertical"
+
+
+                        MDLabel:
+
+                            text:
+                                "Evidence"
+
+                            bold:
+                                True
+
+                            font_size:
+                                sp(14)
+
+                            size_hint_y:
+                                None
+
+                            height:
+                                dp(24)
+
+
+                        MDLabel:
+
+                            text:
+                                root.status_text
+
+                            font_size:
+                                sp(10)
+
+                            theme_text_color:
+                                "Secondary"
+
+
+
+
+            # =================================================
+            # PHOTO
+            # =================================================
+
+            MDCard:
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(92)
+
+                radius:
+                    [20]
+
+                elevation:
+                    3
+
+                md_bg_color:
+                    1, 1, 1, 1
+
+                padding:
+                    dp(10)
+
+
+                MDBoxLayout:
+
+                    orientation:
+                        "horizontal"
+
+                    spacing:
+                        dp(10)
+
+
+                    MDIconButton:
+
+                        icon:
+                            "camera"
+
+                        icon_size:
+                            "32sp"
+
+                        theme_icon_color:
+                            "Custom"
+
+                        icon_color:
+                            0.35, 0.25, 0.90, 1
+
+                        size_hint:
+                            None, None
+
+                        size:
+                            dp(48), dp(48)
+
+
+                    MDBoxLayout:
+
+                        orientation:
+                            "vertical"
+
+
+                        MDLabel:
+
+                            text:
+                                "Capture Photo"
+
+                            bold:
+                                True
+
+                            font_size:
+                                sp(14)
+
+
+                        MDLabel:
+
+                            text:
+                                "Automatically saves to Pictures/Safivox"
+
+                            font_size:
+                                sp(10)
+
+                            theme_text_color:
+                                "Secondary"
+
+
+                    Widget:
+
+
+                    MDRaisedButton:
+
+                        text:
+                            "CAPTURE"
+
+                        size_hint:
+                            None, None
+
+                        size:
+                            dp(100), dp(42)
+
+                        on_release:
+                            root.take_photo()
+
+
+            # =================================================
+            # VIDEO
+            # =================================================
+
+            MDCard:
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(92)
+
+                radius:
+                    [20]
+
+                elevation:
+                    3
+
+                md_bg_color:
+                    1, 1, 1, 1
+
+                padding:
+                    dp(10)
+
+
+                MDBoxLayout:
+
+                    orientation:
+                        "horizontal"
+
+                    spacing:
+                        dp(10)
+
+
+                    MDIconButton:
+
+                        icon:
+                            "video"
+
+                        icon_size:
+                            "32sp"
+
+                        theme_icon_color:
+                            "Custom"
+
+                        icon_color:
+                            0.10, 0.55, 0.90, 1
+
+                        size_hint:
+                            None, None
+
+                        size:
+                            dp(48), dp(48)
+
+
+                    MDBoxLayout:
+
+                        orientation:
+                            "vertical"
+
+
+                        MDLabel:
+
+                            text:
+                                "Record Video"
+
+                            bold:
+                                True
+
+                            font_size:
+                                sp(14)
+
+
+                        MDLabel:
+
+                            text:
+                                "Automatically saves to Movies/Safivox"
+
+                            font_size:
+                                sp(10)
+
+                            theme_text_color:
+                                "Secondary"
+
+
+                    Widget:
+
+
+                    MDRaisedButton:
+
+                        text:
+                            "RECORD"
+
+                        size_hint:
+                            None, None
+
+                        size:
+                            dp(100), dp(42)
+
+                        on_release:
+                            root.record_video()
+
+
+            # =================================================
+            # AUDIO
+            # =================================================
+
+            MDCard:
+
+                size_hint_y:
+                    None
+
+                height:
+                    dp(92)
+
+                radius:
+                    [20]
+
+                elevation:
+                    3
+
+                md_bg_color:
+                    1, 1, 1, 1
+
+                padding:
+                    dp(10)
+
+
+                MDBoxLayout:
+
+                    orientation:
+                        "horizontal"
+
+                    spacing:
+                        dp(10)
+
+
+                    MDIconButton:
+
+                        icon:
+                            "microphone"
+
+                        icon_size:
+                            "32sp"
+
+                        theme_icon_color:
+                            "Custom"
+
+                        icon_color:
+                            0.90, 0.35, 0.15, 1
+
+                        size_hint:
+                            None, None
+
+                        size:
+                            dp(48), dp(48)
+
+
+                    MDBoxLayout:
+
+                        orientation:
+                            "vertical"
+
+
+                        MDLabel:
+
+                            text:
+                                "Record Audio"
+
+                            bold:
+                                True
+
+                            font_size:
+                                sp(14)
+
+
+                        MDLabel:
+
+                            text:
+                                "Automatically saves to Music/Safivox"
+
+                            font_size:
+                                sp(10)
+
+                            theme_text_color:
+                                "Secondary"
+
+
+                    Widget:
+
+
+                    MDRaisedButton:
+
+                        text:
+                            "RECORD"
+
+                        size_hint:
+                            None, None
+
+                        size:
+                            dp(100), dp(42)
+
+                        on_release:
+                            root.record_audio()
+
+
+            Widget:

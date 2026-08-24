@@ -1,0 +1,186 @@
+#:import dp kivy.metrics.dp
+#:import sp kivy.metrics.sp
+
+<ProfileScreen>:
+    MDFloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.96, 0.97, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        MDCard:
+            size_hint: 1, None
+            height: dp(72)
+            pos_hint: {"top": 1}
+            radius: [0, 0, 20, 20]
+            elevation: 5
+            md_bg_color: 1, 1, 1, 1
+            MDBoxLayout:
+                orientation: "horizontal"
+                padding: dp(8), 0
+                spacing: dp(5)
+                MDIconButton:
+                    icon: "arrow-left"
+                    icon_size: "28sp"
+                    theme_icon_color: "Custom"
+                    icon_color: 0.22, 0.18, 0.55, 1
+                    size_hint: None, None
+                    size: dp(48), dp(48)
+                    pos_hint: {"center_y": 0.5}
+                    on_release: root.go_back()
+                MDLabel:
+                    text: "My Profile"
+                    font_size: sp(20)
+                    bold: True
+                    theme_text_color: "Custom"
+                    text_color: 0.22, 0.18, 0.55, 1
+
+        ScrollView:
+            size_hint: 1, 0.88
+            pos_hint: {"x": 0, "top": 0.91}
+            do_scroll_x: False
+            MDBoxLayout:
+                orientation: "vertical"
+                spacing: dp(14)
+                padding: dp(16), dp(18), dp(16), dp(20)
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDCard:
+                    size_hint_y: None
+                    height: dp(190)
+                    radius: [24]
+                    elevation: 4
+                    md_bg_color: 1, 1, 1, 1
+                    FloatLayout:
+                        MDCard:
+                            size_hint: None, None
+                            size: dp(135), dp(135)
+                            pos_hint: {"center_x": 0.5, "top": 0.92}
+                            radius: [67.5]
+                            elevation: 5
+                            md_bg_color: 0.89, 0.87, 0.98, 1
+                            Image:
+                                id: profile_image
+                                source: root.user_photo if root.user_photo else "assets/profile.png"
+                                size_hint: 1, 1
+                                allow_stretch: True
+                                keep_ratio: False
+                                nocache: True
+                        MDLabel:
+                            text: ((root.first_name + " " + root.last_name).strip() or "Your Name")
+                            halign: "center"
+                            font_size: sp(18)
+                            bold: True
+                            size_hint: 1, None
+                            height: dp(28)
+                            pos_hint: {"center_x": 0.5, "y": 0.03}
+
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    spacing: dp(8)
+                    size_hint_y: None
+                    height: dp(48)
+                    MDRaisedButton:
+                        text: "CAMERA"
+                        size_hint_x: 1
+                        on_release: root.capture_profile_photo()
+                    MDRaisedButton:
+                        text: "CHANGE PHOTO"
+                        size_hint_x: 1
+                        md_bg_color: 0.35, 0.25, 0.90, 1
+                        on_release: root.change_profile_photo()
+                    MDRaisedButton:
+                        text: "REMOVE PHOTO"
+                        size_hint_x: 1
+                        md_bg_color: 0.86, 0.18, 0.20, 1
+                        on_release: root.delete_profile_photo()
+
+                MDLabel:
+                    text: "Personal Information"
+                    font_size: sp(18)
+                    bold: True
+                    size_hint_y: None
+                    height: dp(30)
+
+                MDTextField:
+                    id: first_name
+                    text: root.first_name
+                    hint_text: "First Name"
+                    icon_right: "account"
+                    mode: "rectangle"
+                    multiline: False
+
+                MDTextField:
+                    id: last_name
+                    text: root.last_name
+                    hint_text: "Last Name"
+                    icon_right: "account-outline"
+                    mode: "rectangle"
+                    multiline: False
+
+                MDTextField:
+                    id: email
+                    text: root.email
+                    hint_text: "Email"
+                    icon_right: "email"
+                    mode: "rectangle"
+                    multiline: False
+                    input_type: "text"
+
+                MDTextField:
+                    id: phone
+                    text: root.phone
+                    hint_text: "Phone Number"
+                    icon_right: "phone"
+                    mode: "rectangle"
+                    multiline: False
+                    input_type: "number"
+
+                MDTextField:
+                    id: gender_field
+                    text: root.gender
+                    hint_text: "Gender"
+                    icon_right: "gender-male-female"
+                    mode: "rectangle"
+                    readonly: True
+                    multiline: False
+                    on_focus: root.open_gender_menu() if self.focus else None
+
+                MDTextField:
+                    id: blood_group
+                    text: root.blood_group
+                    hint_text: "Blood Group"
+                    icon_right: "water"
+                    mode: "rectangle"
+                    multiline: False
+
+                MDTextField:
+                    id: address
+                    text: root.address
+                    hint_text: "Address"
+                    icon_right: "home-map-marker"
+                    mode: "rectangle"
+                    multiline: True
+                    size_hint_y: None
+                    height: dp(100)
+
+                MDRaisedButton:
+                    text: "SAVE PROFILE"
+                    size_hint: 1, None
+                    height: dp(50)
+                    md_bg_color: 0.22, 0.18, 0.55, 1
+                    on_release: root.save_profile()
+
+                Widget:
+                    size_hint_y: None
+                    height: dp(8)
+
+                MDRaisedButton:
+                    text: "CLEAR PROFILE"
+                    size_hint: 1, None
+                    height: dp(50)
+                    md_bg_color: 0.75, 0.12, 0.15, 1
+                    on_release: root.clear_profile()
